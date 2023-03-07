@@ -1,0 +1,144 @@
+mysql> show databases;
++-----------------------+
+| Database              |
++-----------------------+
+| addressbookservice    |
+| amazon                |
+| customerdetails       |
+| employee              |
+| information_schema    |
+| jdbcpractice          |
+| mysql                 |
+| payroll_service       |
+| performance_schema    |
+| practice              |
+| student               |
+| student2              |
+| sys                   |
+| university            |
+| universityinformation |
++-----------------------+
+15 rows in set (0.13 sec)
+
+mysql> use  practice;
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_practice |
++--------------------+
+| customers          |
++--------------------+
+1 row in set (0.04 sec)
+
+mysql> select * from  customers
+    -> ;
++----+----------+------+-----------+--------+
+| ID | Name     | age  | Address   | Salary |
++----+----------+------+-----------+--------+
+|  1 | Ramesh   |   32 | Ahemdabad |   2000 |
+|  2 | Khilan   |   25 | Delhi     |   1500 |
+|  3 | Kaushik  |   23 | Kota      |   2000 |
+|  4 | Chaitali |   25 | Mumbai    |   6500 |
+|  5 | Hardik   |   27 | Bhopal    |   8500 |
++----+----------+------+-----------+--------+
+5 rows in set (0.01 sec)
+
+mysql> SELECT * FROM CUSTOMERS
+    -> LIMIT 3;
++----+---------+------+-----------+--------+
+| ID | Name    | age  | Address   | Salary |
++----+---------+------+-----------+--------+
+|  1 | Ramesh  |   32 | Ahemdabad |   2000 |
+|  2 | Khilan  |   25 | Delhi     |   1500 |
+|  3 | Kaushik |   23 | Kota      |   2000 |
++----+---------+------+-----------+--------+
+3 rows in set (0.00 sec)
+
+mysql> > SELECT * FROM CUSTOMERS
+    ->  ORDER BY NAME, SALARY;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '> SELECT * FROM CUSTOMERS
+ ORDER BY NAME, SALARY' at line 1
+mysql>  SELECT * FROM CUSTOMERS  ORDER BY NAME, SALARY;
++----+----------+------+-----------+--------+
+| ID | Name     | age  | Address   | Salary |
++----+----------+------+-----------+--------+
+|  4 | Chaitali |   25 | Mumbai    |   6500 |
+|  5 | Hardik   |   27 | Bhopal    |   8500 |
+|  3 | Kaushik  |   23 | Kota      |   2000 |
+|  2 | Khilan   |   25 | Delhi     |   1500 |
+|  1 | Ramesh   |   32 | Ahemdabad |   2000 |
++----+----------+------+-----------+--------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CUSTOMERS
+    ->  ORDER BY NAME DESC;
++----+----------+------+-----------+--------+
+| ID | Name     | age  | Address   | Salary |
++----+----------+------+-----------+--------+
+|  1 | Ramesh   |   32 | Ahemdabad |   2000 |
+|  2 | Khilan   |   25 | Delhi     |   1500 |
+|  3 | Kaushik  |   23 | Kota      |   2000 |
+|  5 | Hardik   |   27 | Bhopal    |   8500 |
+|  4 | Chaitali |   25 | Mumbai    |   6500 |
++----+----------+------+-----------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select Name, sum(Salary) from customers group by Name;
++----------+-------------+
+| Name     | sum(Salary) |
++----------+-------------+
+| Ramesh   |        2000 |
+| Khilan   |        1500 |
+| Kaushik  |        2000 |
+| Chaitali |        6500 |
+| Hardik   |        8500 |
++----------+-------------+
+5 rows in set (0.01 sec)
+
+mysql> select distinct Salary from customers order by Salary;
++--------+
+| Salary |
++--------+
+|   1500 |
+|   2000 |
+|   6500 |
+|   8500 |
++--------+
+4 rows in set (0.00 sec)
+
+mysql> select distinct Name from customers order by Name;
++----------+
+| Name     |
++----------+
+| Chaitali |
+| Hardik   |
+| Kaushik  |
+| Khilan   |
+| Ramesh   |
++----------+
+5 rows in set (0.00 sec)
+
+mysql> select distinct age from customers order by age;
++------+
+| age  |
++------+
+|   23 |
+|   25 |
+|   27 |
+|   32 |
++------+
+4 rows in set (0.00 sec)
+
+mysql> select distinct age, Salary from customers order by age;
++------+--------+
+| age  | Salary |
++------+--------+
+|   23 |   2000 |
+|   25 |   1500 |
+|   25 |   6500 |
+|   27 |   8500 |
+|   32 |   2000 |
++------+--------+
+5 rows in set (0.00 sec)
+
+mysql>
